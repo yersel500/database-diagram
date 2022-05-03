@@ -26,12 +26,22 @@ CREATE TABLE history_treatments (
   FOREIGN KEY(treatments) REFERENCES treatments(id)
 );
 
+CREATE TABLE invoices (
+  id INT PRIMARY KEY,
+  total_amount DECIMAL,
+  generated_at timestamp,
+  payed_at timestamp,
+  medical_history_id INT,
+  FOREIGN KEY(medical_history_id) REFERENCES medical_histories(id)
+);
+
 CREATE TABLE invoice_item (
   id INT,
   unit_price DECIMAL,
   quantity INT,
   total_price DECIMAL,
   invoice_id INT,
+  FOREIGN KEY(invoice_id) REFERENCES invoices(id),
   treatment_id INT,
   FOREIGN KEY(treatment_id) REFERENCES treatments(id)
 )
