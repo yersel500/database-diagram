@@ -11,3 +11,17 @@ CREATE TABLE medical_histories (
   FOREIGN KEY (patient_id) REFERENCES patients(id),
   status VARCHAR(50)
 );
+
+CREATE TABLE treatments (
+  id INT PRIMARY KEY,
+  type VARCHAR,
+  name VARCHAR(50)
+);
+
+CREATE TABLE history_treatments (
+  id INT PRIMARY KEY,
+  med_id INT,
+  treatments_id INT,
+  FOREIGN KEY(med_id) REFERENCES medical_histories(id),
+  FOREIGN KEY(treatments) REFERENCES treatments(id)
+);
